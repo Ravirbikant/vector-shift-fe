@@ -29,27 +29,29 @@ export const BaseNode = ({ id, data, title, handles = [], fields = [] }) => {
       <div><span>{title}</span></div>
 
       {fields.map((f) => (
-        <div key={f.key}>
-          <label>
-            {f.label}:
-            {f.type === 'select' ? (
-              <select value={values[f.key]} onChange={handleChange(f.key)}>
-                {f.options.map((opt) => (
-                  <option key={opt} value={opt}>{opt}</option>
-                ))}
-              </select>
-            ) : f.type === 'static' ? (
-              <span>{f.text}</span>
-            ) : (
-              <input
-                type="text"
-                value={values[f.key]}
-                onChange={handleChange(f.key)}
-              />
-            )}
-          </label>
-        </div>
-      ))}
+  <div key={f.key}>
+    {f.type === 'static' ? (
+      <span>{f.text}</span>
+    ) : (
+      <label>
+        {f.label}:
+        {f.type === 'select' ? (
+          <select value={values[f.key]} onChange={handleChange(f.key)}>
+            {f.options.map((opt) => (
+              <option key={opt} value={opt}>{opt}</option>
+            ))}
+          </select>
+        ) : (
+          <input
+            type="text"
+            value={values[f.key]}
+            onChange={handleChange(f.key)}
+          />
+        )}
+      </label>
+    )}
+  </div>
+))}
     </div>
   );
 };
