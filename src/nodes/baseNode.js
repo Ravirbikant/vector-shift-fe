@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Handle, Position } from 'reactflow';
+import AutoResizeInput from '../components/autoResizeInput';
 
 export const BaseNode = ({ id, data, title, handles = [], fields = [] }) => {
   const [values, setValues] = useState(() => {
@@ -41,6 +42,8 @@ export const BaseNode = ({ id, data, title, handles = [], fields = [] }) => {
               <option key={opt} value={opt}>{opt}</option>
             ))}
           </select>
+        ) : f.autosize ? (
+          <AutoResizeInput value={values[f.key]} onChange={handleChange(f.key)} />
         ) : (
           <input
             type="text"
