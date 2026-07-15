@@ -11,8 +11,11 @@ import { LLMNode } from './nodes/llmNode';
 import { OutputNode } from './nodes/outputNode';
 import { TextNode } from './nodes/textNode';
 import { MathNode } from './nodes/mathNode';
-
+import {FilterNode} from './nodes/filterNode'
 import 'reactflow/dist/style.css';
+import { APINode } from './nodes/apiNode';
+import { MergeNode } from './nodes/mergeNode';
+import { NoteNode } from './nodes/noteNode';
 
 const gridSize = 20;
 const proOptions = { hideAttribution: true };
@@ -22,6 +25,10 @@ const nodeTypes = {
   customOutput: OutputNode,
   text: TextNode,
   math: MathNode,
+  api: APINode,
+  filter: FilterNode,
+  merge: MergeNode,
+  note: NoteNode
 };
 
 const selector = (state) => ({
