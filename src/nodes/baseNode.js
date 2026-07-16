@@ -29,32 +29,33 @@ export const BaseNode = ({ id, data, title, handles = [], fields = [] }) => {
 
       <div><span>{title}</span></div>
 
-      {fields.map((f) => (
-  <div key={f.key}>
-    {f.type === 'static' ? (
-      <span>{f.text}</span>
-    ) : (
-      <label>
-        {f.label}:
-        {f.type === 'select' ? (
-          <select value={values[f.key]} onChange={handleChange(f.key)}>
-            {f.options.map((opt) => (
-              <option key={opt} value={opt}>{opt}</option>
-            ))}
-          </select>
-        ) : f.autosize ? (
-          <AutoResizeInput value={values[f.key]} onChange={handleChange(f.key)} />
-        ) : (
-          <input
-            type="text"
-            value={values[f.key]}
-            onChange={handleChange(f.key)}
-          />
-        )}
-      </label>
-    )}
-  </div>
-))}
+      {fields.map((f) => {
+        const value = f.value !== undefined ? f.value : values[f.key];
+        const onChange = f.onChange || handleChange(f.key);
+
+        return (
+          <div key={f.key}>
+            {f.type === 'static' ? (
+              <span>{f.text}</span>
+            ) : (
+              <label>
+                {f.label}:
+                {f.type === 'select' ? (
+                  <select value={value} onChange={onChange}>
+                    {f.options.map((opt) => (
+                      <option key={opt} value={opt}>{opt}</option>
+                    ))}
+                  </select>
+                ) : f.autosize ? (
+                  <AutoResizeInput value={value} onChange={onChange} />
+                ) : (
+                  <input type="text" value={value} onChange={onChange} />
+                )}
+              </label>
+            )}
+          </div>
+        );
+      })}
     </div>
   );
 };
