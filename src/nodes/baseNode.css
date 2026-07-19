@@ -72,11 +72,14 @@
 .node-field-label-row {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  gap: 8px;
   font-size: 12px;
   font-weight: 500;
   color: #444;
-  margin-bottom: 4px;
+}
+.node-field-label-row .node-input,
+.node-field-label-row .node-select {
+  flex: 1;
 }
 
 .node-field-badge {
