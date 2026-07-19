@@ -1,5 +1,7 @@
 import { useStore } from './store';
 import { shallow } from 'zustand/shallow';
+import { useState } from 'react';
+import { SubmitResultModal } from './submitResultModal';
 
 const selector = (state) => ({
   nodes: state.nodes,
@@ -8,6 +10,7 @@ const selector = (state) => ({
 
 export const SubmitButton = () => {
   const { nodes, edges } = useStore(selector, shallow);
+  const [result, setResult] = useState(null);
 
   const handleSubmit = async () => {
     try {
@@ -19,19 +22,18 @@ export const SubmitButton = () => {
 
       const data = await response.json();
 
-      alert(
-        `Number of Nodes: ${data.num_nodes}\n` +
-        `Number of Edges: ${data.num_edges}\n` +
-        `Is DAG: ${data.is_dag}`
-      );
+      setResult(data);
     } catch (error) {
       alert('Error submitting pipeline: ' + error.message);
     }
   };
 
   return (
+    <>
     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
       <button type="button" onClick={handleSubmit}>Submit</button>
     </div>
+    <SubmitResultModal result={result} onClose={() => setResult(null)} />
+    </>
   );
 };

@@ -1,0 +1,73 @@
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(20, 20, 40, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-card {
+  width: 280px;
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 10px 30px rgba(20, 20, 60, 0.15);
+  overflow: hidden;
+  font-family: inherit;
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  font-weight: 600;
+  font-size: 14px;
+  border-bottom: 1px solid #eef0f8;
+  color: #1e1e2d;
+}
+
+.modal-close {
+  cursor: pointer;
+  color: #9a9db0;
+}
+
+.modal-body {
+  padding: 14px 16px;
+}
+
+.modal-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 13px;
+  color: #444;
+  margin-bottom: 10px;
+}
+
+.modal-value {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-weight: 600;
+  color: #1e1e2d;
+}
+
+.modal-value.success { color: #16a34a; }
+.modal-value.error { color: #dc2626; }
+
+.modal-ok-btn {
+  width: 100%;
+  border: none;
+  background: #6c63ff;
+  color: #fff;
+  padding: 10px 0;
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.modal-ok-btn:hover {
+  background: #5a52e0;
+}
