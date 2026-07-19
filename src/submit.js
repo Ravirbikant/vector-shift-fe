@@ -2,6 +2,7 @@ import { useStore } from './store';
 import { shallow } from 'zustand/shallow';
 import { useState } from 'react';
 import { SubmitResultModal } from './submitResultModal';
+import './submit.css';
 
 const selector = (state) => ({
   nodes: state.nodes,
@@ -30,8 +31,10 @@ export const SubmitButton = () => {
 
   return (
     <>
-    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-      <button type="button" onClick={handleSubmit}>Submit</button>
+    <div className="submit-btn-wrapper">
+      <button className="submit-btn" type="button" onClick={handleSubmit}>
+        Submit
+      </button>
     </div>
     <SubmitResultModal result={result} onClose={() => setResult(null)} />
     </>

@@ -1,9 +1,10 @@
-import { useState } from 'react';
-import { Position } from 'reactflow';
+import { useState, useEffect } from 'react';
+import { Position, useUpdateNodeInternals } from 'reactflow';
 import { BaseNode } from './baseNode';
 
 export const TextNode = ({ id, data }) => {
-  const [text, setText] = useState(data?.text || '{{input}}');
+  const [text, setText] = useState(data?.text || '');
+  const updateNodeInternals = useUpdateNodeInternals();
 
   const handleTextChange = (e) => {
     setText(e.target.value);
@@ -11,6 +12,10 @@ export const TextNode = ({ id, data }) => {
 
   const matches = [...text.matchAll(/\{\{\s*([a-zA-Z_$][a-zA-Z0-9_$]*)\s*\}\}/g)];
   const uniqueVars = [...new Set(matches.map((m) => m[1]))];
+
+  useEffect(() => {
+    updateNodeInternals(id);
+  }, [uniqueVars.join(','), id, updateNodeInternals]);
 
   const variableHandles = uniqueVars.map((varName, i) => ({
     id: varName,
